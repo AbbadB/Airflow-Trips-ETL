@@ -63,8 +63,10 @@ x-airflow-common:
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
-    postgres:
-      condition: service_healthy
+      postgres:
+        condition: service_healthy
+      mobi7postgres:
+        condition: service_healthy
 
 services:
 
@@ -243,6 +245,12 @@ services:
       POSTGRES_DB: mobi7_code_interview
     ports:
       - "32769:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 60s
+      retries: 5
+      start_period: 120s
+      timeout: 60s
 
 volumes:
   postgres-db-volume:
