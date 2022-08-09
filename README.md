@@ -1,6 +1,8 @@
 # Trips ETL Pipeline
 An ETL process using the framework [Airflow](https://airflow.apache.org/) to orchestrate the flux.
 
+The process is divided from extracting the data from a PostgreSQL server, transforming it with SQL functions and loading into new tables to store the metrics.
+
 
 ## Installation
 
