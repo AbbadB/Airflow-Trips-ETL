@@ -20,6 +20,13 @@ After it builds, you must wait until the container mobi7postgres_1 be ready to c
 
 ![My Remote Image](https://i.imgur.com/sRrWhN1.png)
 
+When the postgres database ends the tables creation and rows insertion, we need to create a connection between airflow and postgres, so you will need to do a ```docker ps``` command and then execute the airflow CLI command in one of the airflow running containers. e.g: airflow-webserver container
+
+```bash
+docker ps
+docker exec -it <YOUR CONTAINER ID> airflow connections add postgres_conn --conn-uri 'postgres://postgres:postgres@mobi7postgres/mobi7_code_interview'
+```
+
 Than you can access the Airflow interface by entering in localhost:8080 and log into with the access:
 - username: airflow 
 - password: airflow
