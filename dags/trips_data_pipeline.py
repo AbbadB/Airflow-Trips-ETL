@@ -63,6 +63,12 @@ with DAG("trips_data_pipeline", start_date=datetime(2022, 8, 1), \
         sql='sql/insert/insert_total_idle_time_data.sql'
     )
 
+    create_report = PostgresOperator(
+        task_id='create_report',
+        postgres_conn_id='postgres_conn',
+        sql='sql/report.sql'
+    )
+
     create_total_trips_table >> insert_total_trips_data
     create_total_distance_table >> insert_total_distance_data
     create_total_moving_time_table >> insert_total_moving_time_data
